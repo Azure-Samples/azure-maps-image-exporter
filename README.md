@@ -22,7 +22,7 @@ In order for this module to work, the maps `preserveDrawingBuffer` must be set t
 **Samples**
 
 [Export Map as Image](https://azuremapscodesamples.azurewebsites.net/index.html?sample=Export%20Map%20as%20Image)
-<br/>[<img src="https://github.com/Azure-Samples/AzureMapsCodeSamples/raw/master/AzureMapsCodeSamples/SiteResources/screenshots/Export-Map-as-Image.jpg" height="200px">](https://azuremapscodesamples.azurewebsites.net/index.html?sample=Export%20Map%20as%20Image)
+<br/>[<img src="https://samples.azuremaps.com/map/export-map-as-image/screenshot.jpg" height="200px">](https://azuremapscodesamples.azurewebsites.net/index.html?sample=Export%20Map%20as%20Image)
 
 ## Getting started
 
@@ -69,7 +69,7 @@ A static class for generating screenshots of the map.
 | Name | Return type | Description |
 |------|-------------|-------------|
 | `getImage(map: atlas.Map)` | `Promise<HTMLImageElement>` | Generates a Image object for an image of the map. |
-| `getDataUri(map: atlas.Map, mimeType?: 'image/png' | 'image/jpeg')` | `Promise<string>` | Generates a data URI for an image of the map. Mime type defaults to `'image/png'`. |
+| `getDataUri(map: atlas.Map, mimeType?: 'image/png' \| 'image/jpeg')` | `Promise<string>` | Generates a data URI for an image of the map. Mime type defaults to `'image/png'`. |
 | `getBlob(map: atlas.Map)` | `Promise<Blob>` | Generates a Blob for an image of the map. |
 
 ## Related Projects
