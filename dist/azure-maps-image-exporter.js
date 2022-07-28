@@ -105,7 +105,7 @@ MIT License
             });
         };
         /**
-         * Generates a DataUri for an image of the map.
+         * Generates a data URI for an image of the map.
          * @param map Map instance to get data URI for.
          * @param mimeType The `mimeType` of the image to generate. Defult: `'image/png'`
          */
