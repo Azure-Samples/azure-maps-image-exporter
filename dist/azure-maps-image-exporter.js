@@ -166,7 +166,7 @@ MIT License
         */
         MapImageExporter._getMapCanvas = function (map) {
             return __awaiter(this, void 0, void 0, function () {
-                var mapCanvas, mapContainer, mapWidth, mapHeight, offscreenCanvas, ctx, copyrightContainer, copyrightsStyle, copyrights, copyrightWidth, logoContainer, logoDivStyle, bg, logoUri, logoHeight, logoImg, w, _a;
+                var mapCanvas, mapContainer, mapWidth, mapHeight, offscreenCanvas, ctx, copyrightContainer, copyrightsStyle, copyrights, copyrightSize, logoContainer, logoDivStyle, bg, logoUri, logoHeight, logoImg, w, _a;
                 return __generator(this, function (_b) {
                     switch (_b.label) {
                         case 0:
@@ -184,11 +184,14 @@ MIT License
                                 try {
                                     copyrightsStyle = window.getComputedStyle(copyrightContainer[0].firstElementChild);
                                     copyrights = copyrightContainer[0].innerText;
-                                    //ctx.font = "9px 'Lucida Sans Unicode', 'Lucida Grande', sans-serif";
                                     ctx.font = copyrightsStyle.font;
+                                    copyrightSize = ctx.measureText(copyrights);
+                                    //Add a background to the copyright area.
+                                    ctx.fillStyle = 'rgba(238,238,238,0.8)';
+                                    ctx.fillRect(mapWidth - copyrightSize.width - 10, mapHeight - 15, copyrightSize.width + 10, 20);
+                                    //Write text.
                                     ctx.fillStyle = copyrightsStyle.color;
-                                    copyrightWidth = ctx.measureText(copyrights).width;
-                                    ctx.fillText(copyrights, mapWidth - copyrightWidth - 5, mapHeight - 3);
+                                    ctx.fillText(copyrights, mapWidth - copyrightSize.width - 5, mapHeight - 3);
                                 }
                                 catch (_c) { }
                             }
@@ -208,7 +211,10 @@ MIT License
                         case 2:
                             logoImg = _b.sent();
                             w = logoHeight * (logoImg.width / logoImg.height);
-                            ctx.drawImage(logoImg, mapWidth - w - 5, mapHeight - logoHeight - 15, w, logoHeight);
+                            //Add a background to the copyright area.
+                            ctx.fillStyle = 'rgba(238,238,238,0.8)';
+                            ctx.fillRect(mapWidth - w - 10, mapHeight - logoHeight - 25, w + 10, logoHeight + 10);
+                            ctx.drawImage(logoImg, mapWidth - w - 5, mapHeight - logoHeight - 20, w, logoHeight);
                             return [2 /*return*/, offscreenCanvas];
                         case 3:
                             _a = _b.sent();
@@ -242,7 +248,7 @@ MIT License
         /**********************
         * Private Properties
         ***********************/
-        MapImageExporter._logoHeight = 25;
+        MapImageExporter._logoHeight = 16;
         return MapImageExporter;
     }());
 

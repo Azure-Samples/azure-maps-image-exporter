@@ -9,7 +9,7 @@ export class MapImageExporter {
     * Private Properties
     ***********************/
 
-    private static _logoHeight = 25;
+    private static _logoHeight = 16;
 
     /**********************
     * Public Functions
@@ -94,12 +94,16 @@ export class MapImageExporter {
                 const copyrightsStyle = window.getComputedStyle(copyrightContainer[0].firstElementChild);
                 const copyrights = (<HTMLDivElement>copyrightContainer[0]).innerText;
 
-                //ctx.font = "9px 'Lucida Sans Unicode', 'Lucida Grande', sans-serif";
                 ctx.font = copyrightsStyle.font;
-                ctx.fillStyle = copyrightsStyle.color;
+                const copyrightSize = ctx.measureText(copyrights);
 
-                const copyrightWidth = ctx.measureText(copyrights).width;
-                ctx.fillText(copyrights, mapWidth - copyrightWidth - 5, mapHeight - 3);
+                //Add a background to the copyright area.
+                ctx.fillStyle = 'rgba(238,238,238,0.8)';
+                ctx.fillRect(mapWidth - copyrightSize.width - 10,  mapHeight - 15, copyrightSize.width + 10, 20);
+                
+                //Write text.
+                ctx.fillStyle = copyrightsStyle.color;                
+                ctx.fillText(copyrights, mapWidth - copyrightSize.width - 5, mapHeight - 3);
             }catch{}
         }
 
@@ -119,7 +123,12 @@ export class MapImageExporter {
                     const logoHeight = this._logoHeight;
                     const logoImg = await this._getImage(logoUri);
                     const w = logoHeight * (logoImg.width / logoImg.height);
-                    ctx.drawImage(logoImg, mapWidth - w - 5, mapHeight - logoHeight - 15, w, logoHeight);
+
+                    //Add a background to the copyright area.
+                    ctx.fillStyle = 'rgba(238,238,238,0.8)';
+                    ctx.fillRect(mapWidth - w - 10,  mapHeight - logoHeight - 25, w + 10, logoHeight + 10);
+
+                    ctx.drawImage(logoImg, mapWidth - w - 5, mapHeight - logoHeight - 20, w, logoHeight);
                     return offscreenCanvas;
                 }catch{}
             }
