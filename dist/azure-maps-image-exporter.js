@@ -1,4 +1,6 @@
 /*
+azure-maps-image-exporter Version: 0.0.2
+
 MIT License
 
     Copyright (c) Microsoft Corporation.
